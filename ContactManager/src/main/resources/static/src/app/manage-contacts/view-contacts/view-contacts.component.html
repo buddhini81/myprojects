@@ -1,0 +1,56 @@
+<div class="blue-square-container">
+  <div class="blue-square">
+  <div id="accordion">
+      <div *ngFor="let cView of contactV" class="card">
+        <div class="card-header">
+          <a class="collapsed card-link" data-toggle="collapse" href="#collapse{{ cView.group }}">
+            Contact Group - {{cView.group | uppercase}}
+          </a>
+        </div>
+        <div id="collapse{{ cView.group }}" class="collapse" data-parent="#accordion">
+          <div class="card-body">
+              <input class="form-control" [(ngModel)]="search" type="text" placeholder="Search..">
+              <table class="table table-bordered table-sm">
+                 <tr  *ngFor="let contact of cView.contacts | filter:search;index as i ">
+                  <td>{{ contact.email }}</td>
+                  <!--<td><button (click)="onRemove(contact)" type="button" class="btn btn-primary btn-sm">Remove</button></td>
+                  <td><button (click)="onChange(contact,i)" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Change</button></td>-->
+                </tr>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Change...</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="contactToChange">
+          </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onSaveModal()">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  

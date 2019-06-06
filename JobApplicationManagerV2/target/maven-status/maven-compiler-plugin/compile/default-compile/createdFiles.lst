@@ -1,0 +1,6 @@
+com\myjobappmgr\data\JobSearchCriteria.class
+com\myjobappmgr\service\JobAppManagerService.class
+com\myjobappmgr\data\JobRepository.class
+com\myjobappmgr\controller\JobAppManagerController.class
+com\myjobappmgr\data\Job.class
+com\myjobappmgr\JobAppManagerApplicationV2.class

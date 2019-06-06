@@ -1,0 +1,38 @@
+
+   <div class="blue-square-container">
+      <div class="blue-square">
+          Upload Contact File:
+            <div class="form-group">
+              <input type="file" class="btn btn-default" name="file" (change)="selectFile($event)">
+            </div>
+            <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+            <button class="btn btn-primary btn-sm" [disabled]="!uploadComplete" (click)="save()">Save</button>
+      </div>
+    </div>
+
+    <!-- Status Modal -->
+<div class="modal fade" id="statusModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Contact Manager</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" [innerText]="message">
+        
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" [ngClass]="btnClass" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+   
+  

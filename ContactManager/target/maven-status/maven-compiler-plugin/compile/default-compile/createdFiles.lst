@@ -1,0 +1,15 @@
+com\contactmgr\ContactManager.class
+com\contactmgr\data\Contact.class
+com\contactmgr\data\ApiResponse.class
+com\contactmgr\data\ContactViewDto.class
+com\contactmgr\data\ContactRepository.class
+com\contactmgr\controller\UploadController.class
+com\contactmgr\scheduledtasks\ScheduledTasks.class
+com\contactmgr\controller\ContactManagerController.class
+com\contactmgr\data\ContactUpdateDto.class
+com\contactmgr\service\ContactManagerService.class
+com\contactmgr\misc\ExcelExporter.class
+com\contactmgr\service\StorageService.class
+com\contactmgr\controller\DownloadController.class
+com\contactmgr\misc\ExcelReader.class
+com\contactmgr\misc\Util.class

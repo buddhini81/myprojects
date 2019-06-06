@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Job App Manager</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+  <script src="angular/app.js"></script>
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- Bootstrap Date-Picker Plugin -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  <script src="js/bootstrap_datepicker.js"></script> 
+
+
+ </head>
+<body ng-app="JobAppManagerApp" ng-controller="JobAppManagerController">
+     <div class="container-fluid">
+     <legend>Find</legend>
+     <div class="alrt-failure" style="display:none"> 
+     </div>
+     <div class="alrt-message" style="display:none"> 
+     </div>
+      <form ng-submit="findInfo()">
+         <div class="row">
+				<div class="col-sm-3">
+					 <input type="text" ng-model="criteria.searchTerm" class="form-control with-margin" placeholder="Find What">
+					 <div class="checkbox">
+	                    <label><input type="checkbox" value="" id="isdatesearch" ng-model="criteria.isSearchByDate" ng-true-value="1" ng-false-value="0" ng-click="setDateSearch()">Date Search</label>
+	                </div>
+				</div>  
+			   <div class="col-sm-3">
+				 <input type="text" id="fdate" name="date" class="form-control with-margin invisible" placeholder="From Date" ng-model="criteria.fromDate">
+			   </div>
+			   <div class="col-sm-3">
+				 <input type="text" id="tdate" name="date" class="form-control with-margin invisible" placeholder="To Date" ng-model="criteria.toDate">
+			   </div>
+			   <div class="col-sm-3">
+			     <button type="submit" class="btn btn-primary" data-target="myModal">Find</button>
+			   </div>
+		 </div>
+      </form>
+     </div>
+     <div class="bootstrap-iso">
+     <div class="container-fluid">
+          <legend>New Job App</legend>
+             <div class="alrt-success" style="display:none"> 
+               <strong>Success!</strong> Your data has been saved.
+             </div>
+			<form id="add-form" ng-submit="addNew()">
+			  <div class="row">
+				<div class="col-sm-4">
+				 <input type="text" ng-model="job.title" id= "title" class="form-control with-margin" placeholder="Job Title" required>
+				</div>
+			   <div class="col-sm-4">
+				 <input type="text" ng-model="job.company" id= "company" class="form-control with-margin" placeholder="Company Name" required>
+			   </div>
+			   <div class="col-sm-4">
+				 <input type="text" id="date" name="date" ng-model="job.appliedDate" class="form-control with-margin" placeholder="Applied Date" required>
+			   </div>
+			  </div>
+			  <div class="row">
+			   <div class="col-sm-6">
+				 <input type="text" ng-model="job.board" id="board" class="form-control with-margin" placeholder="Job Board" required>
+			   </div>
+			   <div class="col-sm-6">
+				 <input type="text" ng-model="job.refBoard" id="refBoard" class="form-control with-margin" placeholder="Reffered Job Board">
+			  </div>
+			  </div>
+			  <div class="row">
+			   <div class="col-sm-6">
+			   <textarea rows="4" cols="50" ng-model="job.postUrl" id="postUrl" class="form-control with-margin" placeholder="Job Post URL">
+               </textarea>
+			   </div>
+			   <div class="col-sm-6">
+			      <textarea rows="4" cols="50"  ng-model="job.comment" id="comment" class="form-control with-margin" placeholder="Comment">
+                  </textarea>
+			   </div>
+			  </div>
+			  <div class="row">
+			   <div class="col-sm-6">
+				<button type="submit" class="btn btn-primary">Add</button>
+			   </div>
+			   <div class="col-sm-6">
+				<button type="reset" id="reset" class="btn btn-primary" ng-click="resetClick()">Reset</button>
+			   </div>
+			  </div>
+			</form>
+			</div>
+		</div>
+		
+	<!-- Modal Search Results-->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Results for your search</h4>
+	      </div>
+	      <div class="modal-body">
+	      <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Company</th>
+                <th>Applied Date</th>
+                <th>Job Board</th> 
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="job in jobData" >
+                <td><a href="" ng-click="showEdit(job)" title="Click to edit">{{job.title}}</a></td>
+                <td>{{job.company}}</td>
+                <td>{{job.appliedDate}}</td>
+                <td>{{job.board}}</td>
+                <td>{{job.comment}}</td>
+                <td><a href=""  confirmed-click="confirmedDelete(job)" ng-confirm-click="Do you confirm?"><img src="images/delete.png" title="Click to delete"/></a></td>
+            </tr>
+            </tbody>
+        </table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	
+	  </div>
+	</div>
+	
+	<!-- Modal Edit-->
+	<div id="myModalEdit" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Edit Your Job Application Info</h4>
+	      </div>
+	      <div class="modal-body">
+	       <div class="alrt-success" style="display:none" id="alert-edit"> 
+               <strong>Success!</strong> Your data has been saved.
+           </div>
+	      <form ng-submit="update()">
+			  <div class="row">
+				<div class="col-sm-4">
+				 <input type="text" ng-model="edit.title" class="form-control with-margin" placeholder="Job Title">
+				</div>
+			   <div class="col-sm-4">
+				 <input type="text" ng-model="edit.company" class="form-control with-margin" placeholder="Company Name">
+			   </div>
+			   <div class="col-sm-4">
+				 <input type="text" id="date" name="date" ng-model="edit.appliedDate" class="form-control with-margin" placeholder="Applied Date">
+			   </div>
+			  </div>
+			  <div class="row">
+			   <div class="col-sm-6">
+				 <input type="text" ng-model="edit.board" class="form-control with-margin" placeholder="Job Board">
+			   </div>
+			   <div class="col-sm-6">
+				 <input type="text" ng-model="edit.refBoard" class="form-control with-margin" placeholder="Reffered Job Board">
+			  </div>
+			  </div>
+			  <div class="row">
+			   <div class="col-sm-6">
+			   <textarea rows="4" cols="50"  ng-model="edit.postUrl" class="form-control with-margin" placeholder="Job Post URL">
+               </textarea>
+			   </div>
+			   <div class="col-sm-6">
+			      <textarea rows="4" cols="50"  ng-model="edit.comment" class="form-control with-margin" placeholder="Comment">
+                  </textarea>
+			   </div>
+			  </div>
+			  <div class="row">
+			   <div class="col-sm-12">
+				<button type="submit" class="btn btn-primary">Update</button>
+			   </div>
+			  </div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	
+	  </div>
+	</div>
+</body>
+</html>
