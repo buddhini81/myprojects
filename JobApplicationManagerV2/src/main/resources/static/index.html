@@ -103,27 +103,40 @@
 	        <h4 class="modal-title">Results for your search</h4>
 	      </div>
 	      <div class="modal-body">
-	      <table class="table">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Company</th>
-                <th>Applied Date</th>
-                <th>Job Board</th> 
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="job in jobData" >
-                <td><a href="" ng-click="showEdit(job)" title="Click to edit">{{job.title}}</a></td>
-                <td>{{job.company}}</td>
-                <td>{{job.appliedDate}}</td>
-                <td>{{job.board}}</td>
-                <td>{{job.comment}}</td>
-                <td><a href=""  confirmed-click="confirmedDelete(job)" ng-confirm-click="Do you confirm?"><img src="images/delete.png" title="Click to delete"/></a></td>
-            </tr>
-            </tbody>
-        </table>
+             <div class="row" style="font-weight: bold;border: 1px solid #dbe1dd">
+               <div class="col-sm-3">
+                Title
+               </div>
+               <div class="col-sm-3">
+                Company
+               </div>
+               <div class="col-sm-3">
+                Applied Date
+               </div>
+               <div class="col-sm-2">
+                Status
+               </div>
+               <div class="col-sm-1">
+               </div>
+             </div>
+             
+             <div ng-repeat="job in jobData" class="row" style="border: 1px solid #dbe1dd">
+               <div class="col-sm-3">
+                <a href="" ng-click="showEdit(job)" title="Click to edit">{{job.title}}</a>
+               </div>
+               <div class="col-sm-3">
+                {{job.company}}
+               </div>
+               <div class="col-sm-3">
+                {{job.appliedDate}}
+               </div>
+               <div class="col-sm-2">
+                {{job.comment}}
+               </div>
+               <div class="col-sm-1">
+                <a href="" confirmed-click="confirmedDelete(job)" ng-confirm-click="Do you confirm?"><img src="images/delete.png" title="Click to delete"/></a>
+               </div>
+             </div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
