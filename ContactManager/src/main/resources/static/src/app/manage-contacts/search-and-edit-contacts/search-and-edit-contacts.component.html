@@ -1,98 +1,123 @@
-<div class="orange-square-container">
-  <div class="orange-square">
-    <div class="button-container">
-        <div class="button-table-row">
-            <div class="button-table-cell">
-              <button [disabled]="isInvalid()" (click)="deleteSelectedRow()" type="button" class="btn btn-primary btn-sm">Remove Selected Contact</button>
+<div class="row">
+  <div class="col-sm-1">
+  </div>
+  <div class="col-sm-10">
+          <div class="button-container">
+          <div class="row">
+            <div class="col-sm-3">
+              <button [disabled]="isInvalid()" (click)="deleteSelectedRow()" type="button"
+                class="btn btn-primary btn-sm">Remove Selected Contact</button>
             </div>
-            <div class="button-table-cell">
-                <button [disabled]="isInvalid()" (click)="changeSelectedRow()" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">Change Selected Contact</button>
+            <div class="col-sm-3">
+              <button [disabled]="isInvalid()" (click)="changeSelectedRow()" type="button"
+                class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">Change Selected
+                Contact</button>
             </div>
-            <div class="button-table-cell">
-                <button id="exportContactsButton" (click)="exportContacts()" type="button" class="btn btn-primary btn-sm">Export Contacts</button>
+            <div class="col-sm-3">
+              <button id="exportContactsButton" (click)="exportContacts()" type="button"
+                class="btn btn-primary btn-sm">Export Contacts</button>
             </div>
-            <div class="button-table-cell">
-              <button id="deleteAllContactsButton" (click)="deleteAllRows()" type="button" class="btn btn-primary btn-sm">Delete All Contacts</button>
+            <div class="col-sm-3">
+              <button id="deleteAllContactsButton" (click)="deleteAllRows()" type="button"
+                class="btn btn-primary btn-sm">Delete All Contacts</button>
+            </div>
           </div>
         </div>
-      </div>
-      <table id="contacts-table" class="table table-bordered table-sm" style="width:100%"></table>
+          <div class="row">
+              <div class="col-sm-12">
+                  <table id="contacts-table" class="table table-bordered table-sm" style="width:100%"></table>
+            </div>
+          </div>
+  </div>
+  <div class="col-sm-1">
   </div>
 </div>
 
+
 <!-- Edit Modal -->
-<div class="modal" id="editModal">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
+<div class="row">
+<div class="col-sm-12">
+  <div class="modal" id="editModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Change...</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div class="form-group">
-          <input type="text" class="form-control" [(ngModel)]="contactToChange">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Change...</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-      </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onSaveModal()">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="contactToChange">
+          </div>
+        </div>
 
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onSaveModal()">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- Status Modal -->
-<div class="modal fade" id="statusModal">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Contact Manager</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+<div class="row">
+<div class="col-sm-12">
+  <div class="modal fade" id="statusModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Contact Manager</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-      <!-- Modal body -->
-      <div class="modal-body" [innerText]="message">
-        
-      </div>
+        <!-- Modal body -->
+        <div class="modal-body" [innerText]="message">
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" [ngClass]="btnClass" data-dismiss="modal">Close</button>
-      </div>
+        </div>
 
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" [ngClass]="btnClass" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- Status with donload option Modal -->
-<div class="modal fade" id="statusDownloadModal">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Contact Manager</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+<div class="row">
+<div class="col-sm-12">
+  <div class="modal fade" id="statusDownloadModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Contact Manager</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-      <!-- Modal body -->
-      <div class="modal-body" [innerText]="message">
-      </div>
+        <!-- Modal body -->
+        <div class="modal-body" [innerText]="message">
+        </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" (click)="download()">Download</button>
-        <button type="button" [ngClass]="btnClass" data-dismiss="modal">Close</button>
-      </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" (click)="download()">Download</button>
+          <button type="button" [ngClass]="btnClass" data-dismiss="modal">Close</button>
+        </div>
 
+      </div>
     </div>
   </div>
 </div>
-
+</div>
