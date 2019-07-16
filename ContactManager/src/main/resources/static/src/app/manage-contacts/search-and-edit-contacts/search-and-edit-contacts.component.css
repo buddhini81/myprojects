@@ -1,17 +1,17 @@
 .orange-square-container {
     text-align: center;
-    padding: 25px 25px 25px 25px;
+    padding: 2.5% 2.5% 2.5% 2.5%;
   }
   
   .orange-square {
     text-align: left;
     background-color:orange;
     display: inline-block;
-    padding: 10px 10px 10px 10px;
+    padding: 1% 1% 1% 1%;
   }
 
   .button-container {
-    display: table;
+    padding: 1% 1% 1% 1%;
   }
 
   .button-table-row  {
@@ -19,7 +19,6 @@
   }
 
   .button-table-cell {
-    padding: 10px 10px 10px 10px;
+    padding: 1% 1% 1% 1%;
     display: table-cell;
   }
-
